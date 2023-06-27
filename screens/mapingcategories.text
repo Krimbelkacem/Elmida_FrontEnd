@@ -1,0 +1,141 @@
+ {categoryResults?.map((category) => (
+            <TouchableOpacity
+              styles={{ marginVertical: 20 }}
+              key={category.categoryId}
+              onPress={() =>
+                navigation.navigate("Resto", {
+                  idR: category.restaurantId,
+                })
+              }
+            >
+              <View
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: 10,
+
+                  shadowColor: "white",
+                  shadowOffset: {
+                    width: 0,
+                    height: 0,
+                  },
+                  shadowOpacity: 0.25,
+                  shadowRadius: 3.84,
+                  elevation: 1,
+                  marginVertical: 20,
+                }}
+              >
+                <Animated.View entering={FadeInDown.delay(400).duration(400)}>
+                  <View style={{ flexDirection: "row" }}>
+                    <Image
+                      source={{
+                        uri: `${API_URL}/${category.restoAvatar
+                          ?.replace("public", "")
+                          .replace(/\\/g, "/")}`,
+                      }}
+                      style={{
+                        width: 50,
+                        height: 50,
+                        backgroundColor: "#a93246",
+                        borderRadius: 25,
+                        marginRight: 20,
+                      }}
+                    />
+                    <View style={{ justifyContent: "center" }}>
+                      <Text
+                        style={{
+                          fontFamily: "Poppins-Regular",
+                          color: "black",
+                          fontSize: 18,
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {category.restoName}
+                      </Text>
+                    </View>
+                  </View>
+
+                  <View
+                    style={{
+                      flexDirection: "row",
+
+                      borderRadius: 10,
+                      marginTop: 10,
+                    }}
+                    key={category.categoryId}
+                  >
+                    <View
+                      style={{
+                        padding: 18,
+                        borderColor: "grey",
+                        borderTopLeftRadius: 10,
+                        borderBottomLeftRadius: 10,
+                      }}
+                    ></View>
+                    <View
+                      style={{
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        flex: 1,
+                        padding: 10,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontFamily: "Poppins-Regular",
+                          color: "#000",
+                          fontSize: 18,
+                          fontWeight: "bold",
+                          textTransform: "uppercase",
+                          borderBottomWidth: 1,
+                          borderBottomColor: "#d9d9d9",
+                        }}
+                      >
+                        {category.name}
+                      </Text>
+
+                      {category.items.map((item) => (
+                        <View
+                          key={item.id}
+                          style={{
+                            flexDirection: "row",
+                            backgroundColor: "lightgray",
+                            borderRadius: 10,
+                            marginTop: 10,
+                            justifyContent: "space-between",
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                            flex: 1,
+                            padding: 20,
+                          }}
+                        >
+                          <Text
+                            style={{
+                              fontFamily: "Poppins-Regular",
+                              color: "#000",
+                              fontSize: 18,
+                              fontWeight: "bold",
+                              textTransform: "uppercase",
+                              borderBottomWidth: 1,
+                              borderBottomColor: "#d9d9d9",
+                            }}
+                          >
+                            {item.name}
+                          </Text>
+                          <Text
+                            style={{
+                              fontFamily: "Poppins-Regular",
+                              color: "#000",
+                              fontSize: 18,
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {item.price} da
+                          </Text>
+                        </View>
+                      ))}
+                    </View>
+                  </View>
+                </Animated.View>
+              </View>
+            </TouchableOpacity>
+          ))}
