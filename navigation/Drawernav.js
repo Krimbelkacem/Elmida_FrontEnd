@@ -313,6 +313,7 @@ const CustomDrawer = (props) => {
                 onPress={() =>
                   navigation.navigate("DrawerReservation", {
                     reservations: userData?.reservations,
+                    userId: userData?._id,
                   })
                 }
               >

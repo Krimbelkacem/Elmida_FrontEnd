@@ -22,17 +22,56 @@ import Header from "./DrawerHeader";
 import Animated, { FadeInRight, FadeInLeft } from "react-native-reanimated";
 import { FadeInDown } from "react-native-reanimated";
 import moment from "moment";
-
+import io from "socket.io-client";
 export default function DrawerReservation({ route }) {
-  reservations = route.params?.reservations;
+  // reservations = route.params?.reservations;
+  userId = route.params?.userId;
 
-  const cancelReservation = async (id) => {
+  ///////////////////////////////////////
+
+  const socket = io(`${API_URL}`);
+  const handleSendNotification = (userId, Resto) => {
+    console.log("owner:" + Resto.owner);
+    console.log("Resto.name:" + Resto.name);
+    console.log("userconnected" + userId);
+    const notification = {
+      senderId: userId, // ID de l'expéditeur
+      receiverId: Resto.owner, // Remplacez par l'ID du destinataire
+      message: `un utilisateur ${userId} viens d'annuler sa reservation Resto: ${Resto.name}`,
+    };
+    // Send a notification to the server
+    console.log("Send a notification to the server");
+    socket.emit("notification", notification);
+  };
+  ////////////////////////////////////
+
+  const [reservations, setReservations] = useState([]);
+
+  useEffect(() => {
+    fetchUserReservations();
+  }, []);
+  const fetchUserReservations = async () => {
+    try {
+      const response = await axios.get(
+        `${API_URL}/getUserReservations?userId=${userId}`
+      );
+      setReservations(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  ////////////////////////////////////////////////
+
+  const cancelReservation = async (id, Resto) => {
     try {
       const response = await axios.put(
         `${API_URL}/canceleReservation?id=${id}`
       );
       if (response) {
+        handleSendNotification(userId, Resto);
         alert("Reservation annulée");
+        fetchUserReservations();
         //handleSendNotification2(response.data.user);
         // getRestoProfile(idR);
       }
@@ -64,7 +103,7 @@ export default function DrawerReservation({ route }) {
           <FlatList
             data={reservations}
             style={{ marginBottom: 120 }}
-            keyExtractor={(item) => item._id}
+            keyExtractor={(item) => item?._id.toString()}
             renderItem={({ item }) => {
               const reservationDate = new Date(item.date);
               const formattedDate = reservationDate.toLocaleDateString();
@@ -160,7 +199,7 @@ export default function DrawerReservation({ route }) {
                         borderRadius: 5,
                         marginTop: 10,
                       }}
-                      onPress={() => cancelReservation(item._id)}
+                      onPress={() => cancelReservation(item._id, item.Resto)}
                     >
                       <Text style={{ color: "white" }}>
                         Annuler la réservation
