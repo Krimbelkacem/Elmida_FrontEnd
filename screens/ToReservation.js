@@ -24,23 +24,6 @@ import io from "socket.io-client";
 import { Calendar } from "react-native-calendars";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from "moment"; // Importing moment library
-import Animated, {
-  FadeInDown,
-  FadeInRight,
-  FadeOutRight,
-  Layout,
-} from "react-native-reanimated";
-import {
-  SimpleLineIcons,
-  Ionicons,
-  EvilIcons,
-  AntDesign,
-  Octicons,
-  MaterialCommunityIcons,
-  FontAwesome5,
-  Feather,
-  FontAwesome,
-} from "react-native-vector-icons";
 
 const ToReservation = ({ route }) => {
   const restoId = route.params.restoId;
@@ -48,59 +31,6 @@ const ToReservation = ({ route }) => {
 
   ///////////////////////////////////////
 
-  const showAlert = () => {
-    const response = {
-      data: {
-        date: "2023-06-23",
-        time: "10:00 AM",
-      },
-    };
-
-    Alert.alert(
-      "Reservation effectuée",
-      `Date: ${response.data.date}\nTime: ${response.data.time}`,
-      [
-        {
-          text: "OK",
-          onPress: () => console.log("OK Pressed"),
-          style: "default", // Set the style of the button (default, cancel, destructive)
-        },
-      ],
-      {
-        cancelable: false, // Prevent dismissing the alert by tapping outside
-        // Add custom styles for the dialog container and text
-        containerStyle: { backgroundColor: "#ffffff" },
-        titleStyle: { fontSize: 20, fontWeight: "bold", color: "#000000" },
-        messageStyle: { fontSize: 16, color: "#000000" },
-      }
-    );
-  };
-
-  /*
-  const [UserId, setUserId] = useState(null);
-  const [value, setValue] = useState("0");
-
-  const handleValueChange = (newValue) => {
-    setValue(newValue);
-  };
-  const [visible, setVisible] = useState(true);
-
-  const toggleOverlay = () => {
-    setVisible(!visible);
-  };
-
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-
-  const updateValues = (newHours, newMinutes) => {
-    setHours(newHours);
-    setMinutes(newMinutes);
-  };
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  function handleDateSelection(date) {
-    setSelectedDate(date);
-  }*/
   const socket = io(`${API_URL}`);
   const handleSendNotification = (userId) => {
     console.log("owner:" + owner);

@@ -10,20 +10,12 @@ import {
   TextInput,
   Pressable,
 } from "react-native";
-import {
-  SimpleLineIcons,
-  EvilIcons,
-  AntDesign,
-  Octicons,
-  MaterialCommunityIcons,
-  FontAwesome5,
-} from "react-native-vector-icons";
+
 import ResultatRecherche from "../components/Recherche/ResultatRecherche";
 import Message from "../screens/Message";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Mapviewer from "../components/addresto/Mapview";
-import Welcome from "../screens/Welcome";
-import Login from "../screens/Login";
+
 import OpeningHoursForm from "../screens/RestoSetting/Horairesettings";
 import WelcomeScreen from "../screens/day001/WelcomeScreen";
 import HomeScreen from "../screens/day001/HomeScreen";
@@ -35,13 +27,12 @@ import menu from "../screens/Addmenu";
 import Cuisine from "../screens/Addcuisine";
 import Profile from "../screens/UserProfile";
 import EditProfile from "../screens/EditProfile";
-import ProfilResto from "../screens/ProfilResto";
+
 import Drawernav from "./Drawernav";
 import TokenContext from "../store/tokencontext";
-import UIOnboarding from "../screens/uionboarding";
-import ProfileView from "../screens/RestoProfil2";
+
 import Resto from "../screens/RestoProfil3";
-import MyTabs from "../components/ProfilTab/MyTab";
+
 import CategoryList from "../screens/MenuList";
 import Menu from "../screens/Menu";
 import Openninghours from "../components/Openinghours";
@@ -181,21 +172,13 @@ export default function Authnav() {
           component={HomeScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="Welcome"
-          component={Welcome}
-          options={{ headerShown: false }}
-        />
+
         <Stack.Screen
           name="FollowersLit"
           component={FollowersLit}
           // options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          // options={{ headerShown: false }}
-        />
+
         <Stack.Screen
           name="Openninghours"
           component={Openninghours}
@@ -211,33 +194,13 @@ export default function Authnav() {
           component={CategoryList}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="ProfileView"
-          component={ProfileView}
-          // options={{ headerShown: false }}
-        />
+
         <Stack.Screen
           name="Mapviewer"
           component={Mapviewer}
           // options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="MyTabs"
-          component={MyTabs}
-          options={{
-            header: searchHeader,
-            tabBarLabel: "Home",
-            tabBarIcon: ({ color }) => (
-              <AntDesign name="home" color={color} size={26} />
-            ),
-          }}
-          //  options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="UIOnboarding"
-          component={UIOnboarding}
-          //options={{ headerShown: false }}
-        />
+
         <Stack.Screen
           name="Profile"
           component={Profile}
@@ -261,11 +224,6 @@ export default function Authnav() {
         <Stack.Screen
           name="EditProfile"
           component={EditProfile}
-          //options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ProfilResto"
-          component={ProfilResto}
           //options={{ headerShown: false }}
         />
       </Stack.Navigator>

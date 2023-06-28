@@ -30,7 +30,7 @@ import {
 
 export default function Populaire({ navigation, menu, recentsRestos }) {
   const { width, height } = Dimensions.get("window");
-  console.log(recentsRestos, "eeeeeee");
+
   return (
     <Animated.View entering={FadeInDown.delay(600).duration(300)}>
       <ScrollView

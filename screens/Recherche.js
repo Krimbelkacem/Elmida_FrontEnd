@@ -13,36 +13,15 @@ import {
   Platform,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import {
-  Text,
-  Button,
-  List,
-  Card,
-  Title,
-  Paragraph,
-  Avatar,
-} from "react-native-paper";
+import { Text } from "react-native-paper";
 import axios from "axios";
 import { API_URL } from "../utils/config";
-import { Searchbar } from "react-native-paper";
-import { SearchBar } from "react-native-elements";
-import { horizontal } from "react-native-swiper-flatlist/src/themes";
+
 import { ButtonGroup } from "react-native-elements";
 import Animated, { FadeInRight, FadeInLeft } from "react-native-reanimated";
 import { FadeInDown } from "react-native-reanimated";
-import {
-  SelectList,
-  MultipleSelectList,
-} from "react-native-dropdown-select-list";
-import {
-  SimpleLineIcons,
-  EvilIcons,
-  AntDesign,
-  Octicons,
-  MaterialCommunityIcons,
-  FontAwesome5,
-  Feather,
-} from "react-native-vector-icons";
+
+import { FontAwesome5 } from "react-native-vector-icons";
 
 const Recherche = ({ navigation }) => {
   const [searchText, setSearchText] = useState("");

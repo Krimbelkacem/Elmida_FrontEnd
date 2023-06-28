@@ -132,7 +132,7 @@ export default function Informations({ navigation, route }) {
             onChangeText={(userPasse) => setuserPasse(userPasse)}
           />
           <Button
-            title="Save Changes"
+            title="Sauvegarder"
             onPress={handleSave}
             buttonStyle={styles.button}
             titleStyle={styles.buttonText}
@@ -149,7 +149,7 @@ export default function Informations({ navigation, route }) {
             si vous voulez suprimer votre compte
           </Text>
           <Button
-            title="delete compte"
+            title="suprimer le compte"
             onPress={handleDelete}
             buttonStyle={[styles.button, styles.deleteButton]}
             titleStyle={styles.buttonText}

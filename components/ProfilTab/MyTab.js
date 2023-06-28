@@ -12,18 +12,7 @@ import {
 //import Details from "./Details";
 import Menu from "./Menu";
 import Avis from "./Avis";
-import Reservation from "./Reservation";
-import Pub from "./Pub";
-import ProfileView from "../../screens/Restoprofil1";
 
-import {
-  SimpleLineIcons,
-  EvilIcons,
-  AntDesign,
-  Octicons,
-  MaterialCommunityIcons,
-  FontAwesome5,
-} from "react-native-vector-icons";
 const Tab = createMaterialTopTabNavigator();
 
 function Details() {

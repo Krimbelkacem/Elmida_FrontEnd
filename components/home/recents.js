@@ -24,7 +24,6 @@ import {
 } from "react-native-vector-icons";
 
 export default function Recents({ navigation, menu, recentsRestos }) {
-  console.log(recentsRestos, "eeeeeee");
   return (
     <View>
       <View style={{ marginTop: 20 }}>

@@ -16,11 +16,11 @@ import {
 } from "react-native";
 
 import Home from "../screens/Home";
-import Searchkey from "../screens/Searchresults";
+
 import Recherche from "../screens/Recherche";
-import { Input } from "react-native-elements";
+
 import MyMap from "../screens/MyMap";
-import Not from "../notifications/Not";
+
 import {
   SimpleLineIcons,
   EvilIcons,

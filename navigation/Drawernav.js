@@ -78,7 +78,6 @@ const CustomDrawer = (props) => {
 
         setUserData(user);
         setIsConnected(true);
-        console.log(user);
       }
     } catch (error) {
       console.log(error);

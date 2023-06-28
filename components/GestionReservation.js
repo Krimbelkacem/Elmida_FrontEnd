@@ -13,6 +13,7 @@ import { API_URL } from "../utils/config";
 import axios from "axios";
 import io from "socket.io-client";
 import Icon from "react-native-vector-icons/FontAwesome";
+import moment from "moment";
 const ReservationList = ({
   RestoReservation,
   UserId,
@@ -73,6 +74,22 @@ const ReservationList = ({
     socket.emit("notification", notification);
   };
 
+  // Function to translate the status to French
+  const getStatusTranslation = (status) => {
+    switch (status) {
+      case "pending":
+        return { text: "En cours", color: "orange" };
+      case "accepted":
+        return { text: "Accepté", color: "green" };
+      case "rejected":
+        return { text: "Refusé", color: "red" };
+      case "canceled":
+        return { text: "Annulé", color: "red" };
+      default:
+        return { text: "", color: "black" };
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {display ? (
@@ -80,19 +97,7 @@ const ReservationList = ({
           {RestoReservation?.map((reservation) => {
             const reservationDate = new Date(reservation.date);
             const formattedDate = reservationDate.toLocaleDateString();
-            // Function to translate the status to French
-            const getStatusTranslation = (status) => {
-              switch (status) {
-                case "pending":
-                  return "En cours";
-                case "accepted":
-                  return "Accepté";
-                case "rejected":
-                  return "Refusé";
-                default:
-                  return "";
-              }
-            };
+            const statusTranslation = getStatusTranslation(reservation.state);
 
             return (
               <Card key={reservation._id} containerStyle={styles.card}>
@@ -121,12 +126,48 @@ const ReservationList = ({
                     paddingHorizontal: 16,
                   }}
                 >
-                  <Text>Date: {formattedDate}</Text>
-                  <Text>Heure: {reservation.time}</Text>
-                  <Text>Nombres de places: {reservation.guests}</Text>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      marginBottom: 5,
+                    }}
+                  >
+                    faite le:{" "}
+                    {moment(reservation?.datepost).format("YYYY-MM-DD")} à{"  "}
+                    {moment(reservation?.datepost).format("h:mm a")}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      marginBottom: 5,
+                    }}
+                  >
+                    Date Reservation: {formattedDate}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      marginBottom: 5,
+                    }}
+                  >
+                    Heure Reservation: {reservation?.time}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      marginBottom: 5,
+                    }}
+                  >
+                    Nombres de places: {reservation?.guests}
+                  </Text>
 
-                  <Text>
-                    Status: {getStatusTranslation(reservation?.state)}
+                  <Text
+                    style={{
+                      color: statusTranslation.color,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Status: {statusTranslation.text}
                   </Text>
                 </View>
 

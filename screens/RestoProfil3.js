@@ -37,13 +37,13 @@ import ReservationList from "../components/GestionReservation";
 import Details from "../components/ProfilTab/Details";
 import Menu from "../components/ProfilTab/Menu";
 import Pub from "../components/ProfilTab/Pub";
-import Reservation from "../components/Reservation/Reservation";
+
 import Avis from "../components/ProfilTab/Avis";
 import { fetchRestoProfile } from "../Api/RestoProfil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_URL } from "../utils/config";
 import RestoCarousel from "../components/ProfilTab/RestoCarousel";
-import { Button } from "react-native-elements";
+
 import axios from "axios";
 import ModalResto from "../components/menuresto/ModalResto";
 export default function Resto({ route, navigation }) {
@@ -122,7 +122,7 @@ export default function Resto({ route, navigation }) {
           />
         );
       case "Avis":
-        return <Avis idR={idR} idU={UserId} display={display} />;
+        return <Avis idR={idR} idU={UserId} display={display} Resto={Resto} />;
       default:
         return null;
     }

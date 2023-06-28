@@ -86,7 +86,17 @@ export default function Home({ navigation }) {
     };
 
     fetchData();
-  }, []);
+  }, [navigation]);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      fetchUser();
+    });
+
+    fetchUser(); // Fetch user data initially
+
+    return unsubscribe; // Cleanup the listener on unmount
+  }, [navigation]); // Add navigation as a dependency
 
   /*
   const onRefresh = React.useCallback(() => {
@@ -212,7 +222,7 @@ export default function Home({ navigation }) {
   };
 
   //////////////////////////////////notifications
-  const [notificationMessage, setNotificationMessage] = useState("");
+  // const [notificationMessage, setNotificationMessage] = useState("");
   const [receivedNotification, setReceivedNotification] = useState("");
   const [notificationCount, setNotificationCount] = useState(0);
   const socket = io(`${API_URL}`);

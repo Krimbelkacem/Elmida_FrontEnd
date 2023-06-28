@@ -9,17 +9,17 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
-import { Card } from "react-native-elements";
+
 import { Avatar } from "react-native-paper";
 import { useRoute } from "@react-navigation/native";
 import axios from "axios";
-import { Button, ButtonGroup, withTheme } from "@rneui/themed";
+import { Button } from "@rneui/themed";
 
 import { API_URL } from "../utils/config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "../style/UserProfilestyle";
-import Animated, { FadeInRight, FadeInLeft } from "react-native-reanimated";
-import { FadeInDown } from "react-native-reanimated";
+import Animated, { FadeInRight } from "react-native-reanimated";
+
 export default function Profile({ navigation }) {
   const route = useRoute();
   const [userid, setUserid] = useState({});

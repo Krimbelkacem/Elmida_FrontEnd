@@ -19,8 +19,10 @@ import Animated, {
 import LottieView from "lottie-react-native";
 import { API_URL } from "../../utils/config";
 import axios from "axios";
-export default function Avis({ idR, idU, display }) {
+import moment from "moment";
+export default function Avis({ idR, idU, display, Resto }) {
   // Function to add a comment to a restaurant's profile
+  console.log("owner" + Resto.owner);
   const [comment, setComment] = useState("");
 
   const [comments, setComments] = useState([]);
@@ -104,26 +106,53 @@ export default function Avis({ idR, idU, display }) {
             entering={FadeInRight.delay(300).duration(300)}
           >
             <View style={{ flexDirection: "row" }}>
-              <Image
-                source={{ uri: `${API_URL}/${item?.user?.picture}` }}
-                style={{
-                  width: 40,
-                  height: 40,
-                  backgroundColor: "grey",
-                  borderRadius: 25,
-                  marginRight: 20,
-                }}
-              />
-              <View>
-                <Text
-                  style={{
-                    fontFamily: "Poppins-Medium",
-                    fontSize: 14,
-                    color: "white",
+              {Resto.owner === item?.user?._id ? (
+                <Image
+                  source={{
+                    uri: `${API_URL}/${Resto?.avatar?.replace("public", "")}`,
                   }}
-                >
-                  {item?.user?.username}
-                </Text>
+                  style={{
+                    width: 40,
+                    height: 40,
+                    backgroundColor: "grey",
+                    borderRadius: 25,
+                    marginRight: 20,
+                  }}
+                />
+              ) : (
+                <Image
+                  source={{ uri: `${API_URL}/${item?.user?.picture}` }}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    backgroundColor: "grey",
+                    borderRadius: 25,
+                    marginRight: 20,
+                  }}
+                />
+              )}
+              <View>
+                {Resto.owner === item?.user?._id ? (
+                  <Text
+                    style={{
+                      fontFamily: "Poppins-Medium",
+                      fontSize: 14,
+                      color: "white",
+                    }}
+                  >
+                    {Resto?.name}
+                  </Text>
+                ) : (
+                  <Text
+                    style={{
+                      fontFamily: "Poppins-Medium",
+                      fontSize: 14,
+                      color: "white",
+                    }}
+                  >
+                    {item?.user?.username}
+                  </Text>
+                )}
                 <Text
                   style={{
                     fontFamily: "Poppins-Regular",
@@ -132,7 +161,8 @@ export default function Avis({ idR, idU, display }) {
                     marginTop: -5,
                   }}
                 >
-                  {item.date}
+                  {moment(item?.date).format("YYYY-MM-DD")} à{"  "}
+                  {moment(item?.date).format("h:mm a")}
                 </Text>
               </View>
             </View>
@@ -160,7 +190,22 @@ export default function Avis({ idR, idU, display }) {
         ))}
       </ScrollView>
       {display ? (
-        <Text></Text>
+        <TouchableOpacity
+          style={{
+            width: 60,
+            height: 60,
+            borderRadius: 30,
+
+            bottom: 50,
+            left: width / 2 - 30,
+            backgroundColor: "black",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          onPress={() => setIsVisible(true)}
+        >
+          <MaterialCommunityIcons name="plus" size={50} color="#FFF" />
+        </TouchableOpacity>
       ) : (
         <View>
           {idU ? (
@@ -222,7 +267,7 @@ export default function Avis({ idR, idU, display }) {
               <TextInput
                 value={comment}
                 onChangeText={(text) => setComment(text)}
-                placeholder="commentaire"
+                placeholder="ecrire"
                 placeholderTextColor={"black"}
                 style={{
                   fontSize: 14,
@@ -243,15 +288,27 @@ export default function Avis({ idR, idU, display }) {
               }}
               onPress={addCommentToRestaurant}
             >
-              <Text
-                style={{
-                  fontFamily: "Poppins-Medium",
-                  fontSize: 14,
-                  color: "#FFF",
-                }}
-              >
-                commenter
-              </Text>
+              {display ? (
+                <Text
+                  style={{
+                    fontFamily: "Poppins-Medium",
+                    fontSize: 14,
+                    color: "#FFF",
+                  }}
+                >
+                  Repondre
+                </Text>
+              ) : (
+                <Text
+                  style={{
+                    fontFamily: "Poppins-Medium",
+                    fontSize: 14,
+                    color: "#FFF",
+                  }}
+                >
+                  commenter
+                </Text>
+              )}
             </TouchableOpacity>
           </View>
         </View>

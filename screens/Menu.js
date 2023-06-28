@@ -1,89 +1,3 @@
-/*import React, { useState, useEffect } from "react";
-import Swiper from "react-native-swiper";
-import randomcolor from "randomcolor";
-//import { Tab } from 'react-native-elements';
-import {
-  Card,
-  Text,
-  Avatar,
-  IconButton,
-  List,
-  Title,
-  Paragraph,
-} from "react-native-paper";
-import { View, StyleSheet, ScrollView } from "react-native";
-import { API_URL } from "../utils/config";
-import { TabView, Tab } from 'react-native-elements';
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  view: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  viewStyle: {
-    flex: 1,
-    backgroundColor: randomcolor(),
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
-
-
-const Menu = ({ navigation, route }) => {
-  const [categories, setCategories] = useState([]);
-  const menu = route.params.menu;
-  console.log(menu);
-
-  useEffect(() => {
-    setCategories(menu.categories);
-  }, [navigation]);
-
-
-  const [index, setIndex] = useState(0); // Initialize the 'index' variable using the 'useState' hook
-
-  return (
-  
-      <Swiper loop={false} showsPagination={false} index={index}>
-        {categories.map((item) => (
-          <View key={item._id} style={{ backgroundColor: "white" }}>
-            <List.Item
-              title={item.name}
-              left={(props) => <List.Icon {...props} icon="folder" />}
-            />
-               <ScrollView>
-            {item.items.map((data) => (
-              <Card key={data._id}>
-                <Card.Content>
-                  <Title>{data.name}</Title>
-                  <Paragraph>{data.price} Da</Paragraph>
-                  <Paragraph>{data.image} Da</Paragraph>
-                </Card.Content>
-                <Card.Cover source={{ uri: `${API_URL}/${data.image}` }} />
-                <Card.Actions></Card.Actions>
-              </Card>
-            ))}</ScrollView>
-          </View>
-        ))}
-      </Swiper>
-   
-     /* <Swiper loop={false} showsPagination={false} index={1}>
-        <View style={styles.viewStyle}>
-          <TitleText label="Left" />
-        </View>
-
-        <View style={styles.viewStyle}>
-          <TitleText label="Right" />
-        </View>
-      </Swiper>*/
-  
- /* );
-};
-
-export default Menu;
-*/
 import React, { useState, useEffect } from "react";
 import Swiper from "react-native-swiper";
 import randomcolor from "randomcolor";
@@ -128,33 +42,33 @@ const Menu = ({ navigation, route }) => {
         activeDot={<View style={styles.paginationActiveDot} />}
       >
         {categories.map((item) => (
-          <View  key={item._id}
-          style={styles.scrollView}
-          contentContainerStyle={styles.scrollViewContent}>
-             <List.Item
-                title={item.name}
-                right={(props) => [                  <Icon {...props} name="chevron-left" size={24} />,
-                  <Icon {...props} name="chevron-right" size={24} />
-                ]}
-              />
-          <ScrollView
-           
+          <View
+            key={item._id}
+            style={styles.scrollView}
+            contentContainerStyle={styles.scrollViewContent}
           >
-            <View style={styles.categoryContainer}>
-             
-              {item.items.map((data) => (
-                <Card key={data._id}>
-                  <Card.Content>
-                    <Title>{data.name}</Title>
-                    <Paragraph>{data.price} Da</Paragraph>
-                    <Paragraph>{data.image} Da</Paragraph>
-                  </Card.Content>
-                  <Card.Cover source={{ uri: `${API_URL}/${data.image}` }} />
-                  <Card.Actions></Card.Actions>
-                </Card>
-              ))}
-            </View>
-          </ScrollView>
+            <List.Item
+              title={item.name}
+              right={(props) => [
+                <Icon {...props} name="chevron-left" size={24} />,
+                <Icon {...props} name="chevron-right" size={24} />,
+              ]}
+            />
+            <ScrollView>
+              <View style={styles.categoryContainer}>
+                {item.items.map((data) => (
+                  <Card key={data._id}>
+                    <Card.Content>
+                      <Title>{data.name}</Title>
+                      <Paragraph>{data.price} Da</Paragraph>
+                      <Paragraph>{data.image} Da</Paragraph>
+                    </Card.Content>
+                    <Card.Cover source={{ uri: `${API_URL}/${data.image}` }} />
+                    <Card.Actions></Card.Actions>
+                  </Card>
+                ))}
+              </View>
+            </ScrollView>
           </View>
         ))}
       </Swiper>
@@ -206,4 +120,3 @@ const styles = {
 };
 
 export default Menu;
-
