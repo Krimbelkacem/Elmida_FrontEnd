@@ -409,7 +409,7 @@ export default function Resto({ route, navigation }) {
               style={styles.button}
               onPress={() => navigation.navigate("LoginScreen")}
             >
-              <Text style={styles.buttonText}>veuillez se connecter</Text>
+              <Text style={styles.buttonText}>veuillez vous connecter</Text>
             </TouchableOpacity>
           )}
         </View>

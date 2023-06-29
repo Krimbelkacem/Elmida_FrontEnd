@@ -21,7 +21,7 @@ const Pub = ({ Resto }) => {
     const photos = Resto?.photos?.slice(0, 20);
 
     const rows = [];
-    for (let i = 0; i < photos.length; i += 3) {
+    for (let i = 0; i < photos?.length; i += 3) {
       const rowPhotos = photos?.slice(i, i + 3);
       const row = (
         <View key={i} style={{ flexDirection: "row", marginBottom: 10 }}>
@@ -66,7 +66,7 @@ const Pub = ({ Resto }) => {
             onPress={() => setSelectedImage(null)}
             style={styles.closeButton}
           >
-            <Text style={styles.closeButtonText}>Close</Text>
+            <Text style={styles.closeButtonText}>fermer</Text>
           </TouchableOpacity>
         </View>
       </Modal>
