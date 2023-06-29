@@ -1,3 +1,3 @@
 //const API_URL = "https://small-frequent-girdle.glitch.me";
-const API_URL = "http://192.168.0.191:5000";
+const API_URL = "https://curly-closed-flight.glitch.me";
 export { API_URL };

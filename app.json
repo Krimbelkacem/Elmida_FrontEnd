@@ -29,15 +29,15 @@
     },
     "extra": {
       "eas": {
-        "projectId": "ef45bdaf-0962-4ce1-955c-ee80979ce114"
+        "projectId": "69ec86be-e303-4d2b-8941-084af8558185"
       }
     },
-    "owner": "krimbelka",
+    "owner": "laarbiamroune",
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/00cee1c7-ac1b-4c2a-9251-d4856f337446"
+      "url": "https://u.expo.dev/69ec86be-e303-4d2b-8941-084af8558185"
     }
   }
 }
